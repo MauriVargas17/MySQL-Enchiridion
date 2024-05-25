@@ -1,0 +1,13 @@
+*.pyc
+*.py
+*.pyo
+__pycache__/
+
+.DS_Store
+*.tmp
+*.temp
+*.swp
+*.swo
+
+env/
+venv/
