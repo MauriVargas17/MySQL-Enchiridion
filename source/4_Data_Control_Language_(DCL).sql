@@ -78,7 +78,7 @@ SHOW GRANTS FOR 'username'@'127.0.0.1';  -- Displays the privileges granted to t
 -- To query this table, you typically need administrative privileges.
 
 -- Query to get all user accounts and their details
-SELECT * FROM mysql.username;
+SELECT * FROM mysql.user;
 
 /*********************************************/
 /*        Role Management (MySQL 8.0+)       */
