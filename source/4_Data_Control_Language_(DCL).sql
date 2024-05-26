@@ -11,10 +11,12 @@
 /*        GRANT Statements                   */
 /*********************************************/
 
+-- 	Create a new user
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+
 -- Grant all privileges on a database to a user
 GRANT ALL PRIVILEGES ON database_name.*
-TO 'username'@'host'
-IDENTIFIED BY 'password';  -- Grants all privileges on the specified database to the user
+TO 'username'@'host' -- Grants all privileges on the specified database to the user
 
 -- Grant specific privileges on a table to a user
 GRANT SELECT, INSERT, UPDATE, DELETE
