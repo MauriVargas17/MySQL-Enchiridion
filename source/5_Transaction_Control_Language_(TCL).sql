@@ -90,37 +90,40 @@ COMMIT;
 
 -- Scenario: We want to update multiple records in the employees table. If any update fails, we will rollback to the original state before the transaction started.
 
-START TRANSACTION;
-
--- Perform first update
-UPDATE employees SET hire_date = '2022-01-01' WHERE employee_id = 1;
-
--- Set a savepoint after the first update
-SAVEPOINT first_update;
-
--- Perform second update
-UPDATE employees SET hire_date = '2022-01-02' WHERE employee_id = 2;
-
--- Simulate a failure (e.g., by checking a condition)
--- Let's assume we have a condition that should not be true
-DECLARE EXIT HANDLER FOR SQLEXCEPTION
+CREATE PROCEDURE update_staff_hire_dates()
 BEGIN
-    -- Rollback to the savepoint if there is an error
-    ROLLBACK TO first_update;
-    -- Rollback the entire transaction
-    ROLLBACK;
-END;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Rollback to the savepoint if there is an error
+        ROLLBACK TO first_update;
+        -- Rollback the entire transaction
+        ROLLBACK;
+    END;
 
--- Check condition (Simulating a failure)
-IF (1 = 0) THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Simulated failure';
-END IF;
+    -- Start transaction
+    START TRANSACTION;
 
--- Perform third update
-UPDATE employees SET hire_date = '2022-01-03' WHERE employee_id = 3;
+    -- Perform first update
+    UPDATE staff SET hire_date = '2022-01-01' WHERE employee_id = 1;
 
--- Commit the transaction if everything is successful
-COMMIT;
+    -- Set a savepoint after the first update
+    SAVEPOINT first_update;
+
+    -- Perform second update
+    UPDATE staff SET hire_date = '2022-01-02' WHERE employee_id = 2;
+
+    -- Check condition (Simulating a failure)
+    IF (1 = 0) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Simulated failure';
+    END IF;
+
+    -- Perform third update
+    UPDATE staff SET hire_date = '2022-01-03' WHERE employee_id = 3;
+
+    -- Commit the transaction if everything is successful
+    COMMIT;
+end;
 
 -- If any of the updates fail, the ROLLBACK statement will undo all changes, and the database will return to its original state before the transaction started.
 
+CALL update_staff_hire_dates();
