@@ -241,12 +241,12 @@ FROM employees;
 
 -- Using RANK() to assign a rank to each row within a partition
 SELECT employee_id, first_name, last_name, department_id, salary,
-       RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rank
+       RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS `rank`
 FROM employees;
 
 -- Using DENSE_RANK() to assign a dense rank to each row within a partition
 SELECT employee_id, first_name, last_name, department_id, salary,
-       DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dense_rank
+       DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS `dense_rank`
 FROM employees;
 
 -- Using SUM() to calculate a running total of salaries within a partition
