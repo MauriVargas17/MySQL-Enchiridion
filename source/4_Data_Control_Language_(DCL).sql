@@ -44,8 +44,7 @@ WITH GRANT OPTION;  -- Grants privileges with the ability to grant them to other
 
 -- Revoke all privileges on a database from a user
 REVOKE ALL PRIVILEGES, GRANT OPTION
-ON database_name.*
-FROM 'username'@'127.0.0.1';  -- Revokes all privileges on the specified database from the user
+FROM 'username'@'127.0.0.1'; -- Revokes all privileges from the user
 
 -- Revoke specific privileges on a table from a user
 REVOKE SELECT, INSERT, UPDATE, DELETE
