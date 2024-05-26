@@ -13,6 +13,7 @@
 /*********************************************/
 
 -- Create a new table
+DROP TABLE IF EXISTS employees;
 CREATE TABLE employees (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,  -- Auto-incrementing primary key
     first_name VARCHAR(50) NOT NULL,             -- First name, cannot be null
