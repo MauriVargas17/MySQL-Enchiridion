@@ -183,10 +183,10 @@ SELECT REPLACE('Hello World', 'World', 'MySQL') AS replaced_string;
 SELECT NOW() AS current_datetime;
 
 -- CURDATE(): Returns the current date
-SELECT CURDATE() AS current_date;
+SELECT CURDATE() AS 'current_date';
 
 -- CURTIME(): Returns the current time
-SELECT CURTIME() AS current_time;
+SELECT CURTIME() AS 'current_time';
 
 -- DATE_FORMAT(): Formats a date
 SELECT DATE_FORMAT(NOW(), '%Y-%m-%d') AS formatted_date;
