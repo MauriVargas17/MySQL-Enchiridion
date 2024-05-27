@@ -40,6 +40,9 @@ DROP USER 'new_user'@'localhost';
 -- Permissions (or privileges) control what actions a user can perform on the database.
 -- Common privileges include SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, and GRANT.
 
+DROP USER IF EXISTS 'admin_user'@'localhost';
+CREATE USER 'admin_user'@'localhost' IDENTIFIED BY 'password';
+
 -- Granting all privileges to a user
 GRANT ALL PRIVILEGES ON database_name.* TO 'admin_user'@'localhost';
 
