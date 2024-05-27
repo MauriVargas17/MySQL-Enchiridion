@@ -143,7 +143,7 @@ CREATE TABLE employees_composite (
     department_id INT,
     salary DECIMAL(10,2),
     hire_date DATE,
-    PRIMARY KEY (employee_id, hire_date)
+    PRIMARY KEY (employee_id, hire_date,department_id)
 )
 PARTITION BY RANGE (YEAR(hire_date))
 SUBPARTITION BY HASH(department_id) SUBPARTITIONS 4 (
