@@ -116,6 +116,7 @@ WITH CHECK OPTION;
 -- INVOKER: The view executes with the privileges of the user who invokes it.
 
 -- Example: View with Security Context
+-- ////////////////// IT DOES NOT WORK YET //////////////////////////////
 CREATE VIEW secure_employee_view
 SQL SECURITY DEFINER
 AS
@@ -124,6 +125,7 @@ FROM employees;
 
 -- Using the view
 SELECT * FROM secure_employee_view;
+-- ////////////////////////// NEEDS TO BE FIX /////////////////////////////
 
 /*********************************************/
 /*           Managing Views                  */
