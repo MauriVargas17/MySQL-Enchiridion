@@ -170,10 +170,16 @@ SELECT
 /*********************************************/
 
 -- JSON data types store JSON-formatted data.
+-- Create table json_example
+DROP TABLE IF EXISTS json_example;
 
 CREATE TABLE json_example (
     json_col JSON                -- Stores JSON data
 );
+
+-- Insert data for the example
+INSERT INTO json_example (json_col) VALUES 
+('{"key": "value", "another_key": {"nested_key": "nested_value"}}');
 
 -- JSON Data Functions
 SELECT 
@@ -184,7 +190,8 @@ SELECT
     JSON_CONTAINS(json_col, '"value"', '$.key') AS json_contains_value, -- Check if JSON contains value
     JSON_KEYS(json_col) AS json_keys_value, -- Get keys from JSON
     JSON_ARRAY('value1', 'value2') AS json_array_value, -- Create JSON array
-    JSON_OBJECT('key1', 'value1', 'key2', 'value2') AS json_object_value; -- Create JSON object
+    JSON_OBJECT('key1', 'value1', 'key2', 'value2') AS json_object_value -- Create JSON object
+FROM json_example;
 
 /*********************************************/
 /*        Data Type Conversions              */
