@@ -25,7 +25,10 @@
 
 -- Example: Creating Indexes
 CREATE INDEX idx_employee_last_name ON employees (last_name);
+
+alter table employees add column email varchar(255);
 CREATE UNIQUE INDEX idx_employee_email ON employees (email);
+
 CREATE FULLTEXT INDEX idx_employee_fulltext ON employees (first_name, last_name);
 
 -- Covering Index: An index that includes all the columns needed by a query.
@@ -99,6 +102,8 @@ WHERE e.salary > 50000;
 -- Techniques:
 -- 1. Avoid using correlated subqueries if possible
 -- 2. Use derived tables or common table expressions (CTEs)
+
+alter table departments add column location varchar(255);
 
 -- Example: Optimizing Subqueries with Joins
 -- Original subquery
