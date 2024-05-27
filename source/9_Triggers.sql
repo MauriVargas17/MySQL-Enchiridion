@@ -48,6 +48,8 @@
 -- Example: BEFORE INSERT Trigger
 -- This trigger automatically sets the created_at field to the current timestamp before inserting a new row.
 
+DROP TABLE IF EXISTS employees;
+
 CREATE TABLE employees (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50),
