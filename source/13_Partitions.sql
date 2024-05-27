@@ -90,13 +90,25 @@ VALUES (1, 'John', 'Doe', 10, 75000.00, 'New York', 1),
 -- Example: Hash Partitioning
 DROP TABLE IF EXISTS employees_hash;
 CREATE TABLE employees_hash (
-    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT AUTO_INCREMENT,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     department_id INT,
-    salary DECIMAL(10,2)
+    salary DECIMAL(10,2),
+    PRIMARY KEY (employee_id, department_id)
 )
 PARTITION BY HASH (department_id) PARTITIONS 4;
+
+-- Insertar algunos datos de ejemplo
+INSERT INTO employees_hash (first_name, last_name, department_id, salary)
+VALUES
+('John', 'Doe', 1, 50000.00),
+('Jane', 'Smith', 2, 60000.00),
+('Alice', 'Johnson', 3, 70000.00),
+('Bob', 'Brown', 4, 80000.00);
+
+-- Verificar que los datos se insertaron correctamente
+SELECT * FROM employees_hash;
 
 /*********************************************/
 /*           Key Partitioning                */
