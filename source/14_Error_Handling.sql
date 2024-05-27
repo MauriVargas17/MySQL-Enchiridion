@@ -114,6 +114,8 @@ CALL continue_handler_example();
 -- The CONDITION statement is used to declare named conditions that can be referenced in handlers.
 
 -- Example: Using CONDITION
+alter table employees add column hire_date date;
+
 DELIMITER $$
 
 CREATE PROCEDURE condition_example()
