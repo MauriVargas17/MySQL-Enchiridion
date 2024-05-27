@@ -79,6 +79,10 @@ END $$
 
 DELIMITER ;
 
+alter table employees add column salary int;
+alter table employees add column bonus int;
+update employees set salary = 100;
+
 -- Calling the procedure
 CALL CalculateEmployeeBonus(1);
 
