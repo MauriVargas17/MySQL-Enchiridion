@@ -163,7 +163,7 @@ CREATE TABLE spatial_example (
 SELECT 
     ST_AsText(POINT(1, 1)) AS point_as_text,    -- Convert point to WKT
     ST_Distance(POINT(1, 1), POINT(2, 2)) AS distance, -- Calculate distance between points
-    ST_Contains(POLYGON((0 0, 0 1, 1 1, 1 0, 0 0)), POINT(0.5, 0.5)) AS contains; -- Check if polygon contains point
+    ST_Contains(ST_GeomFromText('POLYGON((0 0, 0 1, 1 1, 1 0, 0 0))'), POINT(0.5, 0.5)) AS 'contains'; -- Check if polygon contains point
 
 /*********************************************/
 /*        JSON Data Types                    */
