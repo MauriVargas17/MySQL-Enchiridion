@@ -47,7 +47,6 @@
 
 -- Example: BEFORE INSERT Trigger
 -- This trigger automatically sets the created_at field to the current timestamp before inserting a new row.
-
 DROP TABLE IF EXISTS employees;
 
 CREATE TABLE employees (
@@ -206,6 +205,15 @@ END $$
 
 DELIMITER ;
 
+-- Succesful case study, should insert the data without problems
+INSERT INTO employees (first_name, last_name, birth_date) VALUES ('John', 'Doe', '2000-01-01');
+
+-- Verify Insertion
+SELECT * FROM employees WHERE first_name = 'John' AND last_name = 'Doe';
+
+-- Fail case study
+INSERT INTO employees (first_name, last_name, birth_date) VALUES ('Jane', 'Smith', '2010-01-01');
+
 -- Case Study 2: Auditing Changes
 -- An AFTER UPDATE trigger can be used to audit changes to important fields in a table.
 
@@ -223,12 +231,18 @@ END $$
 
 DELIMITER ;
 
+-- Update employee's last name
+UPDATE employees SET last_name = 'Smith' WHERE first_name = 'John' AND last_name = 'Doe';
+
+-- Verify if the action was inserted on audit_log table
+SELECT * FROM audit_log WHERE employee_id = (SELECT employee_id FROM employees WHERE first_name = 'John' AND last_name = 'Smith');
+
 /*********************************************/
 /*        Impacting the same table           */
 /*********************************************/
 
 -- Example Table
-CREATE TABLE IF NOT EXISTS employees (
+CREATE TABLE IF NOT EXISTS employee (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -239,7 +253,7 @@ CREATE TABLE IF NOT EXISTS employees (
 DELIMITER $$
 
 CREATE TRIGGER before_insert_employees
-BEFORE INSERT ON employees
+BEFORE INSERT ON employee
 FOR EACH ROW
 BEGIN
     SET NEW.full_name = CONCAT(NEW.first_name, ' ', NEW.last_name);
@@ -248,10 +262,10 @@ END $$
 DELIMITER ;
 
 -- Insert a new employee to trigger the update
-INSERT INTO employees (first_name, last_name) VALUES ('John', 'Doe');
+INSERT INTO employee (first_name, last_name) VALUES ('John', 'Doe');
 
 -- Check the updated table
-SELECT * FROM employees;
+SELECT * FROM employee;
 
 /*********************************************/
 /*            Best Practices                 */
