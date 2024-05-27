@@ -196,6 +196,8 @@ CREATE TABLE employees_fk (
 /*********************************************/
 
 -- Adding a New Partition
+-- In order to thie tu work in the thable employees_range
+-- The last partition mut be different of "MAXVALUE"
 ALTER TABLE employees_range ADD PARTITION (
     PARTITION p4 VALUES LESS THAN (2030)
 );
@@ -204,9 +206,10 @@ ALTER TABLE employees_range ADD PARTITION (
 ALTER TABLE employees_range DROP PARTITION p4;
 
 -- Reorganizing Partitions
-ALTER TABLE employees_range REORGANIZE PARTITION p1, p2 INTO (
-    PARTITION p1 VALUES LESS THAN (2005),
-    PARTITION p2 VALUES LESS THAN (2015)
+ALTER TABLE employees_range REORGANIZE PARTITION p0, p1, p2 INTO (
+    PARTITION p0 VALUES LESS THAN (2005),
+    PARTITION p1 VALUES LESS THAN (2010),
+    PARTITION p2 VALUES LESS THAN (2020)
 );
 
 -- Listing Partitions
