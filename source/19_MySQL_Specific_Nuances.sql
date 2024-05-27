@@ -76,8 +76,8 @@ CREATE TABLE example_prefix (
 -- Spatial Indexes: MySQL supports spatial indexes for spatial data types.
 -- Example: Creating a spatial index
 CREATE TABLE example_spatial (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    location POINT,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    location POINT NOT NULL,
     SPATIAL INDEX (location)
 );
 
