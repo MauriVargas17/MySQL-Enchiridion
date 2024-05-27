@@ -20,13 +20,13 @@
 
 -- Example: Creating a Full Database Backup
 -- Replace `username`, `password`, `database_name`, and `backup_file.sql` with actual values.
-mysqldump -u username -p password database_name > backup_file.sql;
+mysqldump -u username -p password database_name > backup_file.sql
 
 -- Example: Creating a Backup of Specific Tables
-mysqldump -u username -p password database_name table1 table2 > backup_file.sql;
+mysqldump -u username -p password database_name table1 table2 > backup_file.sql
 
 -- Example: Creating a Compressed Backup
-mysqldump -u username -p password database_name | gzip > backup_file.sql.gz;
+mysqldump -u username -p password database_name | gzip > backup_file.sql.gz
 
 /*********************************************/
 /*              Restoring Backups            */
@@ -36,10 +36,10 @@ mysqldump -u username -p password database_name | gzip > backup_file.sql.gz;
 
 -- Example: Restoring a Full Database Backup
 -- Replace `username`, `password`, `database_name`, and `backup_file.sql` with actual values.
-mysql -u username -p password database_name < backup_file.sql;
+mysql -u username -p password database_name < backup_file.sql
 
 -- Example: Restoring a Compressed Backup
-gunzip < backup_file.sql.gz | mysql -u username -p password database_name;
+gunzip < backup_file.sql.gz | mysql -u username -p password database_name
 
 /*********************************************/
 /*              Customized Backups           */
