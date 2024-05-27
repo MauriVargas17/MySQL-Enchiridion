@@ -71,6 +71,8 @@ DELIMITER ;
 -- Example: AFTER INSERT Trigger
 -- This trigger inserts a log entry into an audit table after a new row is inserted into the employees table.
 
+DROP TABLE IF EXISTS audit_log;
+
 CREATE TABLE audit_log (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     operation VARCHAR(50),
