@@ -208,7 +208,7 @@ INSERT INTO integer_types_example (tinyint_col) VALUES ('123'); -- String to int
 SELECT 
     CAST('123' AS SIGNED INTEGER) AS cast_to_int,  -- Converts string to integer
     CONVERT('123.45', DECIMAL(5,2)) AS convert_to_decimal, -- Converts string to decimal
-    CAST('2023-01-01' AS DATE) AS cast_to_date,   -- Converts string to date
-    JSON_EXTRACT(json_col, '$.key') AS json_extract_value; -- Extracts data from JSON
+    CAST('2023-01-01' AS DATE) AS cast_to_date;   -- Converts string to date
+SELECT JSON_EXTRACT(json_col, '$.key') AS json_extract_value FROM json_example; -- Extracts data from JSON
 
 
