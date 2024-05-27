@@ -66,13 +66,20 @@ CREATE TABLE employees_list (
     department_id INT,
     salary DECIMAL(10,2),
     location VARCHAR(50),
-    PRIMARY KEY (employee_id, location)
+    location_id INT,
+    PRIMARY KEY (employee_id, location_id)
 )
-PARTITION BY LIST (location) (
-    PARTITION pNorth VALUES IN ('New York', 'Boston', 'Chicago'),
-    PARTITION pSouth VALUES IN ('Houston', 'Dallas', 'Miami'),
-    PARTITION pWest VALUES IN ('San Francisco', 'Los Angeles', 'Seattle')
+PARTITION BY LIST (location_id) (
+    PARTITION pNorth VALUES IN (1, 2, 3),
+    PARTITION pSouth VALUES IN (4, 5, 6),
+    PARTITION pWest VALUES IN (7, 8, 9)
 );
+
+-- Inserciones de ejemplo
+INSERT INTO employees_list (employee_id, first_name, last_name, department_id, salary, location, location_id)
+VALUES (1, 'John', 'Doe', 10, 75000.00, 'New York', 1),
+       (2, 'Jane', 'Smith', 20, 80000.00, 'Houston', 4),
+       (3, 'Michael', 'Johnson', 30, 90000.00, 'San Francisco', 7);
 
 /*********************************************/
 /*           Hash Partitioning               */
