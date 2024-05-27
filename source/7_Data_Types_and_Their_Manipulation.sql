@@ -129,11 +129,18 @@ CREATE TABLE binary_example (
 );
 
 -- Binary Data Operations
+-- Consult the stored values
 SELECT 
     HEX(binary_col) AS hex_value,          -- Convert binary data to hexadecimal
-    LENGTH(binary_col) AS binary_length,   -- Length of binary data
-    COMPRESS('text') AS compressed_value,  -- Compress data
-    UNCOMPRESS(compressed_value) AS uncompressed_value; -- Uncompress data
+    LENGTH(binary_col) AS binary_length    -- Length of binary data
+FROM binary_example;
+
+-- Compress and uncompress a example text
+SET @compressed_value = COMPRESS('example_text');
+
+SELECT 
+    @compressed_value AS compressed_value,
+    UNCOMPRESS(@compressed_value) AS uncompressed_value;
 
 /*********************************************/
 /*        Spatial Data Types                 */
