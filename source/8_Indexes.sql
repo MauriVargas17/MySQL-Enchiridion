@@ -31,6 +31,8 @@
 
 -- 1. Single-Column Indexes:
 -- Create an index on a single column.
+DROP TABLE IF EXISTS employees;
+
 CREATE TABLE employees (
     employee_id INT AUTO_INCREMENT PRIMARY KEY,
     last_name VARCHAR(50),
