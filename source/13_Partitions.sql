@@ -119,11 +119,12 @@ SELECT * FROM employees_hash;
 -- Example: Key Partitioning
 DROP TABLE IF EXISTS employees_key;
 CREATE TABLE employees_key (
-    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT AUTO_INCREMENT,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     department_id INT,
-    salary DECIMAL(10,2)
+    salary DECIMAL(10,2),
+    PRIMARY KEY (employee_id, department_id)
 )
 PARTITION BY KEY(department_id) PARTITIONS 4;
 
